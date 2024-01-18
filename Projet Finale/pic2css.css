@@ -1,0 +1,142 @@
+@font-face {
+    font-family: "Pwperspective";
+    src: url("./fonts/PWPerspective.ttf");
+  }
+#close-window {
+    position: absolute;
+    bottom: 0;
+    height: 120px;
+    width: 500px;
+    font-family: "Pwperspective", sans-serif;
+    font-size: 30px;
+    background-image: url('paper.jpeg');
+} 
+#close-window:hover{
+    animation: gelatine 0.6s;
+    cursor: pointer;
+  }
+  #close-window:active{
+    background-color: green;
+  }
+  @keyframes gelatine {
+      25%{
+      transform: scale(0.8,1.3);
+      }
+      50%{
+      transform: scale(1.1,0.8);
+      }
+      75%{
+      transform: scale(0.7,1.2);
+      }
+}
+
+
+
+:root {
+    --font: Pwperspective;
+    font-size: 20px;   
+  }
+h1{
+    position: absolute;
+    color: black;
+}
+  
+  body {
+    background: url('paper.jpeg');
+    font-family: var(--font);
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Timeline Container */
+  .timeline {
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  /* section container */
+  .section {
+    position: relative;
+    max-width: 100%;
+    height: 250px;
+  }
+  
+  /* PADDING POUR SI C'EST ODD OU NON. C'EST LE PLUS SIMPLE FACON POUR FAIRE LE TIMELINE SANS MANUELLEMENT FAIRE POUR CHAQUE SECTION*/
+  .section:nth-child(odd) {
+    padding: 30px 0 30px 30px;
+  }
+  .section:nth-child(even) {
+    padding: 30px 30px 30px 0;
+  }
+  /* Global AVANT */
+  .section::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    border: solid orangered;
+  }
+  
+  /* BORDURE */
+  .section:nth-child(odd)::before {
+    left: 0px;
+    top: -4.5px;
+    bottom: -4.5px;
+    border-width: 5px 0 5px 5px;
+    border-radius: 50px 0 0 50px;
+  }
+  
+  /* BORDURE*/
+  .section:nth-child(even)::before {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-width: 5px 5px 5px 0;
+    border-radius: 0 50px 50px 0;
+  }
+  
+  /* SI C'EST LA PREMIE */
+  .section:first-child::before {
+    border-top: 0;
+    border-top-left-radius: 0;
+  }
+  
+  /* INFO SUR LA CARTE */
+  .info {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  /* titre of the section */
+  .titre {
+    color: orangered;
+    position: relative;
+  }
+  
+  /* Timeline dot  */
+  .titre::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 999px;
+    border: 3px solid orangered;
+  }
+  
+  /* ALLIGNER LA TEXTE DEPENDANT DU COTE  */
+  .section:nth-child(even) > .info > .titre {
+    text-align: right;
+  }
+  
+ /* ALLIGNE LA POINT DEPENDANT DU COTE  */
+  .section:nth-child(odd) > .info > .titre::before {
+    left: -45px;
+  }
+  
+  /* ALLIGNE LA POINT DEPENDANT DU COTE  */
+  .section:nth-child(even) > .info > .titre::before {
+    right: -45px;
+  }
+  

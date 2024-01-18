@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="pic4css.css">
+
+<title>FIN</title>
+<link rel="icon" href="icon.jpg" type="image/x-icon"/>
+
+
+<div id="sentence">Wallahi je vais donner zabi 95%</div>
+<input type="text" id="typing-box">
+
+<button id="close-window" style="display:none;">Ne ment pas!!!!</button>
+
+<div id="timer"></div>
+
+<!-- CE CODE CREE UNE DIV CONTENEUR QUI CONTIENT UNE PHRASE A TAPER, UN INPUT POUR TAPER, UN BOUTON DE SOUMISSION ET UN DIV POUR AFFICHER LE TEMPS ECROULE -->
+
+
+
+
+
+
+<script>
+let typingBox = document.getElementById("typing-box");
+let sentence = document.getElementById("sentence");
+let timer = document.getElementById("timer");
+let submitButton = document.getElementById("close-window");
+let startTime;
+let intervalId;
+
+typingBox.addEventListener("input", checkTyping);
+typingBox.addEventListener("keydown", startTimer);
+submitButton.addEventListener("click", resetGame);
+
+function checkTyping() {
+  let typing = typingBox.value;
+  let sentenceArray = sentence.innerText.split("");
+  let typingArray = typing.split("");
+
+  for (let i = 0; i < sentenceArray.length; i++) {
+    if (sentenceArray[i] === typingArray[i]) {
+      // JE METS CSS CORRECT QUAND C'EST BIEN ECRIT
+      sentenceArray[i] = `<span class="correct">${sentenceArray[i]}</span>`;
+    } else {
+      // JE METS CSS INCORRECT QUAND C'EST PAS BIEN ECRIT
+      sentenceArray[i] = `<span class="incorrect">${sentenceArray[i]}</span>`;
+    }
+  }
+
+  sentence.innerHTML = sentenceArray.join("");
+
+  if (typing === sentence.innerText) {
+    typingBox.disabled = true;
+    submitButton.style.display = "block";
+    clearInterval(intervalId);
+  }
+}
+
+// FUNCTION POUR QUAND L'UTILISATEUR ECRIT POUR LA PREMIERE FOIS
+function startTimer() {
+  if (!startTime) {
+    startTime = Date.now();
+    intervalId = setInterval(updateTimer, 10);
+  }
+}
+
+// TIMER POUR LE JEU
+function updateTimer() {
+  let elapsedTime = Date.now() - startTime;
+  let date = new Date(elapsedTime);
+
+  let hours = date.getUTCHours();
+  let minutes = date.getUTCMinutes();
+  let seconds = date.getUTCSeconds();
+  let milliseconds = date.getUTCMilliseconds();
+
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  if (milliseconds < 10) {
+    milliseconds = "00" + milliseconds;
+  } else if (milliseconds < 100) {
+    milliseconds = "0" + milliseconds;
+  }
+
+  timer.innerText = `TEMPS ECOULER : ${hours}:${minutes}:${seconds}:${milliseconds}`;
+}
+
+// QUAND TU A BIEN ECRIT TU PEUX PLUS ECRIRE ET LE TIMER ARRETE
+function resetGame() {
+  clearInterval(intervalId);
+  typingBox.disabled = false;
+  typingBox.value = "";
+  sentence.innerHTML = "Wallahi je vais donner zabi 95%";
+  submitButton.style.display = "none";
+startTime = null;
+timer.innerText = "";
+
+}
+// BOUTTON FERMER
+    const closeButton = document.getElementById('close-window');
+    closeButton.addEventListener('click', () => {
+      window.opener.postMessage('close', '*');
+    });
+  
+</script>

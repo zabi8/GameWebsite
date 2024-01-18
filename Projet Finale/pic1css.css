@@ -1,0 +1,118 @@
+@font-face {
+    font-family: "Pwperspective";
+    src: url("./fonts/PWPerspective.ttf");
+  }
+
+#close-window {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    margin-right: 85%;
+    height: 120px;
+    width: 500px;
+    font-family: "Pwperspective", sans-serif;
+    font-size: 30px;
+    background-image: url('paper.jpeg');
+    z-index: 1;
+    visibility: hidden;
+} 
+#close-window:hover{
+    animation: gelatine 0.6s;
+    cursor: pointer;
+  }
+  
+  #close-window:active{
+    background-color: green;
+  }
+  @keyframes gelatine {
+      25%{
+      transform: scale(0.8,1.3);
+      }
+      50%{
+      transform: scale(1.1,0.8);
+      }
+      75%{
+      transform: scale(0.7,1.2);
+      }
+}
+
+  body{
+    background-image: url(paper.jpeg);
+  }
+
+  /* CSS POUR LES CARTES */
+  .card {
+    width: 100px;
+    height: 150px;
+    border: 1px solid #333;
+  }
+  #user-cards, #middle-cards, #enemy-cards {
+    display: flex;
+  }
+  #user-cards {
+    justify-content: flex-start;
+  }
+  #middle-cards {
+    justify-content: center;
+  }
+
+  #enemy-cards {
+    justify-content: flex-end;
+  }
+#c1{
+    background-image: url("./cards/back.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+  #c2{
+    background-image: url("./cards/back.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  #c3{
+    background-image: url("./cards/c3.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  #c4{
+    background-image: url("./cards/c4.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;  }
+  #c5 {
+    background-image: url("./cards/c5.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+  margin-right: 50px;
+  }
+  .card.face-down {
+    background-image: url('./cards/back.png'); 
+  }
+  #c6{
+    background-image: url("./cards/c6.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;  }
+  #c7 {
+    background-image: url("./cards/back.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-left: 50px;
+    cursor: pointer;  
+  }
+
+  /* LA CARTE BRILLE POUR QUE TU SACHES QUOI CLIQUER */
+  #c7:not(.clicked) {
+    box-shadow: 0 0 20px gold;
+  }
+  
+  #c7.clicked {
+    box-shadow: none;
+    cursor: default;
+  }  
+  #c8{
+    background-image: url("./cards/c8.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;  }
+  #c9{
+    background-image: url("./cards/c9.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;  }

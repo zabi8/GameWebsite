@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="pic3css.css">
+
+<title>FIN</title>
+<link rel="icon" href="icon.jpg" type="image/x-icon"/>
+	 
+
+      
+<button id="first-button">CLIQUE MOI</button>
+
+<button id="second-button">CLIQUE MOI</button>
+<img id="scare-img" src="zakaria.jpg" alt="Jumpscare">
+<audio id="scare-audio" src="hiaudio.mp3"></audio>
+
+<button id="close-window">CLIQUE MOI</button>
+
+<!-- IMPORTANT METS LE DIV EN BAS POUR QU'ELLE PREND PRIORITE -->
+<div id="flashlight"></div>
+
+<script>
+
+////////////////////////////// POCHE A MAIN
+let mouseX = 0;
+let mouseY = 0;
+let flashlight = document.getElementById("flashlight");
+
+
+function trouveSouris(e) {
+	try {
+		// POSITION DU SOURIS
+		mouseX = e.pageX 
+		mouseY = e.pageY 
+
+		//DEFINIR LES VARIABLES XPOS ET YPOS A LA SOURIS ACTUELLE
+		flashlight.style.setProperty("--Xpos", mouseX + "px");
+		flashlight.style.setProperty("--Ypos", mouseY + "px");
+	} catch (e) {}
+}
+
+//METTRE A JOUR QUAND TU BOUGE LA SOURIS
+document.addEventListener("mousemove", trouveSouris);
+
+
+	////////////////////// POCHE A MAIN //
+
+	document.addEventListener("DOMContentLoaded", () => {
+    const firstButton = document.getElementById("first-button");
+    const secondButton = document.getElementById("second-button");
+    const scareImg = document.getElementById("scare-img");
+    const scareAudio = document.getElementById("scare-audio");
+    const closeButton = document.getElementById("close-window");
+    //POSITION ALEATOIRE POUR LA PREMIERE BOUTTON
+    setRandomPosition(firstButton);
+    //CACHER BOUTTON 2 AU DEBUT
+    secondButton.style.display = "none";
+    scareImg.style.display = "none";
+    closeButton.style.display = "none";
+    firstButton.onclick = function(){
+        setRandomPosition(secondButton);
+        //REND LE BOUTTON VISIBLE QUAND TU CLIQUE
+        secondButton.style.display = "block";
+        firstButton.style.display = "none";
+    }
+    secondButton.onclick = function(){
+        //MONTRE IMAGE DE ZAK POUR 3 SECONDS
+        scareImg.style.display = "block";
+        setRandomPosition(closeButton);
+        scareAudio.play();
+        secondButton.style.display = "none";
+        setTimeout(function(){
+            scareImg.style.display = "none";
+            closeButton.style.display = "block";
+        }, 3000);
+    }
+    closeButton.onclick = function(){
+        window.opener.postMessage('close', '*');
+    }
+});
+
+// FONCTION POUR LA POSITION ALEATOIRE
+function setRandomPosition(element) {
+    const x = Math.floor(Math.random() * window.innerWidth);
+    const y = Math.floor(Math.random() * window.innerHeight);
+    element.style.top = `${y}px`;
+    element.style.left = `${x}px`;
+}
+
+//  BOUTTON FERMER
+   const closeButton = document.getElementById('close-window');
+   closeButton.addEventListener('click', () => {
+   window.opener.postMessage('close', '*');
+  });
+  
+</script>

@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="pic2css.css">
+
+<link rel="icon" href="icon.jpg" type="image/x-icon"/>
+
+<h1>CHRONOLOGIE DE MON PASSAGE À LA CLASSE INFO</h1>
+
+
+<!-- SIMPLE HTML CODAGE -->
+<div class="timeline">
+  <div class="outer">
+    <div class="section">
+      <div class="info">
+
+        <h3 class="titre">Janvier 2011 </h3>
+
+      
+      </div>
+    </div>
+    <div class="section">
+      <div class="info">
+
+        <h3 class="titre">Semptembre 2014</h3>
+       
+     
+      </div>
+    </div>
+    <div class="section">
+      <div class="info">
+
+        <h3 class="titre">2016</h3>
+
+      
+    </div>
+    </div>
+    <div class="section">
+      <div class="info">
+
+        <h3 class="titre">2018</h3>
+     
+      </div>
+    </div>
+    <div class="section">
+      <div class="info">
+
+        <h3 class="titre">FIN</h3>
+        <button id="close-window">VOUS AVEZ FINI LE CHRONOLOGIE DE MON TEMPS EN INFO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+
+  // BOUTTON FERMER
+  const closeButton = document.getElementById('close-window');
+  closeButton.addEventListener('click', () => {
+    window.opener.postMessage('close', '*');
+  });
+
+</script>

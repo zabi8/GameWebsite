@@ -1,0 +1,89 @@
+<!-- MES LIENS -->
+<link rel="stylesheet" href="pic1css.css">
+
+<title>FIN</title>
+<link rel="icon" href="icon.jpg" type="image/x-icon"/>
+
+<!-- MON BOUTON POUR FINIR LE NIVEAU -->
+<button id="close-window">VOUS AVEZ GAGNEZ! CLIQUEZ MOI POUR VOIR VOTRE PRIX</button>
+
+<!-- EMPLACER MES CARTES -->
+<div id="enemy-cards">
+    <div class="card" id="c1"></div>
+    <div class="card" id="c2"></div>
+ </div>
+  <div id="middle-cards">
+    <div class="card" id="c3"></div>
+    <div class="card" id="c4"></div>
+    <div class="card" id="c5"></div>
+    <div class="card" id="c6"></div>
+    <div class="card" id="c7"></div>
+  </div>
+  <div id="user-cards">
+    <div class="card" id="c8"></div>
+    <div class="card" id="c9"></div>
+  </div>
+  
+  
+  <!-- SCRIPT POUR CETTE JEU (J'AI MIS TOUT LE SCRIPT DANS LE MEME HTML CAR J'AI TROUVER QUE C'ETAIT PLUS ORGANISABLE) -->
+  <script>
+
+// FONCTION QUE JAI FAIS POUR PLUS TARD
+  function replaceCards() { 
+  // CREER LA NOUVELLE CARTE
+  const userCard3 = document.createElement('div');
+  userCard3.classList.add('card');
+  userCard3.id = 'user-card-3';
+
+  // STYLE POUR LA CARTE
+  userCard3.style.background = 'url(valeriacard.png)';
+  userCard3.style.backgroundSize = 'cover';
+  /* LA CARTE BRILLE POUR QUE TU SACHES QUOI CLIQUER */
+  userCard3.style.boxShadow = '0 0 50px black';
+  userCard3.style.cursor = 'pointer';
+  // CACHER LES CARTES
+userCard3.addEventListener('click', () => {
+  closeButton.style.visibility = 'visible';
+  const divs = document.querySelectorAll('div');
+  divs.forEach((div) => {
+    div.style.display = 'none';
+   });
+ });
+  
+//  CACHER LES CARTE DU JOUEURS PUIS MONTRER LA CARTE LEGENDAIRE
+  const userCard1 = document.getElementById('c8');
+  const userCard2 = document.getElementById('c9');
+
+  document.getElementById('user-cards').removeChild(userCard1);
+  document.getElementById('user-cards').removeChild(userCard2);
+  document.getElementById('user-cards').appendChild(userCard3);
+}
+
+// QUAND TU CLIQUE LE DERNIER CARTE DANS LE JEU POUR MONTRE LA CARTE TU MONTRE L'ALERTE PUIS TU FAIT LE FONCTION 
+document.getElementById('c7').addEventListener('click', (event) => {
+        
+        const c1 = document.getElementById('c1');
+        const c2 = document.getElementById('c2');
+        const c7 = document.getElementById('c7');
+
+        event.target.classList.add('clicked');
+
+        c1.style.backgroundImage = 'url(./cards/c1.png)';
+        c2.style.backgroundImage = 'url(./cards/c2.png)';
+        c7.style.backgroundImage = 'url(./cards/c7.png)';
+
+      alert('Vous avez perdu, mais vous pouvez encore gagner en trichant. Placez la carte légendaire dans votre poche.');
+      replaceCards();
+});
+
+
+// FERMER L'ONGLE 
+  const closeButton = document.getElementById('close-window');
+  closeButton.addEventListener('click', () => {
+    window.opener.postMessage('close', '*');
+  });
+
+  </script>
+  
+
+
